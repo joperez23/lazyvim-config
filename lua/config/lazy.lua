@@ -14,6 +14,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.filetype.add({
+  extension = {
+    ["http"] = "http",
+  },
+})
+
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
@@ -27,6 +33,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.lang.toml" },
     { import = "lazyvim.plugins.extras.lang.sql" },
+    { "mistweaverco/kulala.nvim", opts = {} },
+    -- { "mistweaverco/kulala.nvim", opts = {} },
     -- import/override with your plugins
     { import = "plugins" },
   },
