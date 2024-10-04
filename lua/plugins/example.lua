@@ -11,17 +11,12 @@ if true then return {} end
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end,
-  },
+
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "wildcharm",
     },
   },
 
@@ -77,21 +72,6 @@ return {
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
-        taplo = {
-          keys = {
-            {
-              "K",
-              function()
-                if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
-                  require("crates").show_popup()
-                else
-                  vim.lsp.buf.hover()
-                end
-              end,
-              desc = "Show Crate Documentation",
-            },
-          },
-        },
       },
     },
   },
@@ -154,10 +134,6 @@ return {
         "typescript",
         "vim",
         "yaml",
-        "http",
-        "graphql",
-        --"rust",
-        --"ron",
       },
     },
   },
@@ -212,18 +188,6 @@ return {
         "shfmt",
         "flake8",
       },
-    },
-  },
-
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "yochem/cmp-htmx",
-    },
-    config = {
-      sources = require("cmp").config.sources({
-        { name = "cmp-htmx" },
-      }),
     },
   },
 }
