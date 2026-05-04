@@ -1,0 +1,48 @@
+return {
+  "yetone/avante.nvim",
+  event = "VeryLazy",
+  lazy = false,
+  version = false,
+  opts = {
+    provider = "ollama",
+    providers = {
+      ---@type AvanteProvider
+      ollama = {
+        ["local"] = true,
+        endpoint = "127.0.0.1:11434/v1",
+        model = "qwen3-coder:latest",
+        is_env_set = require("avante.providers.ollama").check_endpoint_alive,
+        --[[parse_curl_args = function(opts, code_opts)
+          return {
+            url = opts.endpoint .. "/chat/completions",
+            headers = {
+              ["Accept"] = "application/json",
+              ["Content-Type"] = "application/json",
+            },
+            body = {
+              model = opts.model,
+              messages = require("avante.providers").openai.parse_messages(code_opts),
+              max_tokens = 2048,
+              temperature = 0, -- 0 para máxima precisión en código
+              stream = true,
+              options = {
+                num_thread = 8, -- Fuerza a Ollama a usar todos tus núcleos
+              },
+            },
+          }
+        end,
+        parse_stream_data = function(data, handler_opts)
+          require("avante.providers").openai.parse_stream_data(data, handler_opts)
+        end,]]
+      },
+    },
+  },
+  dependencies = {
+    "stevearc/dressing.nvim",
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+    "hrsh7th/nvim-cmp",
+    "nvim-tree/nvim-web-devicons",
+    "MeanderingProgrammer/render-markdown.nvim",
+  },
+}

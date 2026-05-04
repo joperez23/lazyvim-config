@@ -1,8 +1,6 @@
-tt.*
-.tests
-doc/tags
-debug
-.repro
-foo.*
-*.log
-data
+.netrwhist
+undo/
+/lazy-lock.json
+/lazy/
+/db_ui_data/
+*.swp
