@@ -1,0 +1,28 @@
+return {
+  {
+    "gutsavgupta/nvim-gemini-companion",
+    cmd = { "GeminiChat", "GeminiExplain", "GeminiRefactor" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "folke/snacks.nvim",
+    },
+    -- keys = {
+    --  { "gc", "GeminiToggle", desc = "Toggle Gemini Companion" },
+    -- },
+    keys = {
+      { "<leader>ag", "<cmd>GeminiToggle<cr>", desc = "Alternar barra lateral de Gemini" },
+      { "<leader>ac", "<cmd>GeminiSwitchToCli<cr>", desc = "Abrir sesión de Gemini" },
+      { "<leader>aS", "<cmd>GeminiSend<cr>", mode = { "x" }, desc = "Enviar selección a Gemini" },
+    },
+    opts = {
+      -- gemini-3.1-pro-preview, gemini-3-flash-preview, gemini-2.5-pro, gemini-3.1-flash-lite, gemini-3.5-flash, gemma-4-31b-it, gemma-4-26b-a4b-it
+      model = "gemini-3.5-flash",
+    },
+    config = function()
+      require("gemini").setup({
+        -- Configuraciones adicionales según tus preferencias
+        cmds = { "gemini", "qwen" },
+      })
+    end,
+  },
+}
